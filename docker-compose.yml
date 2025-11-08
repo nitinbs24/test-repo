@@ -5,7 +5,7 @@ services:
     image: nginx:latest
     ports:
      - "8080:80"
-     - "8080:80" # Error 2: Duplicate port map lessgooo
+     - "8080:80" # Error 2: Duplicate port mapping
 
   database:
     image: postgres:15
