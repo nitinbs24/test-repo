@@ -1,0 +1,31 @@
+version: '3.33' # Error 1: Invalid version string
+
+services:
+  webapp:
+    image: nginx:latest
+    ports:
+     - "8080:80"
+     - "8080:80" # Error 2: Duplicate port mapping
+
+  database:
+    image: postgres:15
+    environment: # Error 3: Incorrect indentation (should be 4 spaces)
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=mysecretpassword
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  api:
+    build: ./api
+    ports:
+      - "5000" # Error 4: Invalid port format (should be HOST:CONTAINER)
+    depends_on:
+      - database
+      - redis # Error 5: Dependency on a service that is not defined
+
+  webapp: # Error 6: Duplicate service key (service 'webapp' is already defined)
+    image: httpd:latest
+    ports:
+      - "9090:80"
