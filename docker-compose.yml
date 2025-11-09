@@ -1,9 +1,0 @@
-services:
-  app:
-    image: python:latest  # Bad: :latest tag
-    environment:
-      - SOME_OTHER_KEY=123
-  db:
-    image: postgres       # Bad: No volumes key
-    environment:
-      - POSTGRES_USER=myuser
